@@ -1,0 +1,44 @@
+﻿<div class="panel-heading clearfix">
+    <h3 class="panel-title pull-left" style="font-size: 24px">Links</h3>
+    <form action="" class="navbar-form navbar-right">
+        <div class="input-group">
+            <input ng-model="search" type="Search" placeholder="Search..." class="form-control"/>
+            <div class="input-group-btn">
+                <button class="btn btn-info">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="panel-body">
+    <div class="pull-right">
+        <input ng-click="ctrl.openAddView()" ng-disabled="ctrl.isAddMode" type="button" value="Add" class="btn btn-default" style="width: 100px"/>
+    </div>
+    <div>
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th ng-hide="true"></th><th style="width: 50%">Link Title</th><th style="width: 30%">Creation Date</th><th style="width: 150px"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in ctrl.linksData | orderBy: 'CreatedDate' : false | filter:search">
+                <td ng-hide="true">{{item.LinkID}}</td>
+                <td>{{item.OriginalString}}</td>
+                <td>{{item.CreatedDate | date:"MM/dd/yyyy 'at' h:mma"}}</td>
+                <td>
+                    <div class="text-right">
+                        <button ng-click="ctrl.openEditView(item)" ng-disabled="ctrl.isEditMode" class="btn btn-primary btn-xs" style="width: 50px">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </button>
+                        <button ng-click="ctrl.removeLink(item)" class="btn btn-danger btn-xs" style="width: 50px">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
